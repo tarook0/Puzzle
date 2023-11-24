@@ -69,6 +69,7 @@ void Grid::draw(){
     {
         tile.draw();
     }
+    assert(glGetError()==0);
 }
 void Grid::solve(){
     for(Tile &tile:tiles){
