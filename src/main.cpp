@@ -31,13 +31,12 @@ int main(int argc, char **argv)
                 if (event.key.code == Keyboard::Space && !solved)
                 {
                     GRID.solve();
-                    GRID.draw();
-                    window.display();
-                    solved = true;
                 }
             default:
                 break;
             }
         }
+        GRID.draw();
+        window.display();
     }
 }
