@@ -6,8 +6,8 @@ int main(int argc, char **argv)
     ContextSettings ctxSettings{};
     ctxSettings.antialiasingLevel = 0;
     ctxSettings.depthBits = 0;
-    ctxSettings.majorVersion = 3;
-    ctxSettings.minorVersion = 3;
+    ctxSettings.majorVersion = 4;
+    ctxSettings.minorVersion = 0;
     ctxSettings.sRgbCapable = false;
     ctxSettings.stencilBits = 0;
     Window window(VideoMode(WINDOW_SIDE, WINDOW_SIDE), "Akari", 7U, ctxSettings);
