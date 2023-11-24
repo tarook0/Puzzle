@@ -26,21 +26,21 @@ void Grid::init()
     {
         for (int j = 0; j < verticalTilesCount; ++j)
         {
-            tiles.push_back(Tile(i + 1, j + 1));
+            tiles.push_back(Tile(i + 1, j + 1,(Tile::Type)(i*verticalTilesCount+j)));
         }
     }
 
     // Load textures
     Image images[Tile::NUM_TYPES];
-    images[Tile::LIGHT].loadFromFile("Assets/Light.png");   
-    images[Tile::WALL].loadFromFile("Assets/Wall.png");     
-    images[Tile::WALL_0].loadFromFile("Assets/Wall_0.png"); 
-    images[Tile::WALL_1].loadFromFile("Assets/Wall_1.png"); 
-    images[Tile::WALL_2].loadFromFile("Assets/Wall_2.png"); 
-    images[Tile::WALL_3].loadFromFile("Assets/Wall_3.png"); 
-    images[Tile::WALL_4].loadFromFile("Assets/Wall_4.png"); 
-    images[Tile::VOID].loadFromFile("Assets/Void.png");     
-    images[Tile::LIT_VOID].loadFromFile("Assets/Lit_Void.png");
+    images[Tile::TILE_1].loadFromFile("./Assets/tile_1.png");
+    images[Tile::TILE_2].loadFromFile("./Assets/tile_2.png");
+    images[Tile::TILE_3].loadFromFile("./Assets/tile_3.png");
+    images[Tile::TILE_4].loadFromFile("./Assets/tile_4.png");
+    images[Tile::TILE_5].loadFromFile("./Assets/tile_5.png");
+    images[Tile::TILE_6].loadFromFile("./Assets/tile_6.png");
+    images[Tile::TILE_7].loadFromFile("./Assets/tile_7.png");
+    images[Tile::TILE_8].loadFromFile("./Assets/tile_8.png");
+    images[Tile::VOID].loadFromFile("./Assets/void.png");
     for (int i = 0; i < Tile::NUM_TYPES; ++i)
     {
         glGenTextures(1, &textures[i]);

@@ -7,18 +7,18 @@ class Tile{
 public:
     enum Type
     {
-        LIGHT,
-        WALL,
-        WALL_0,
-        WALL_1,
-        WALL_2,
-        WALL_3,
-        WALL_4,
+        TILE_1,
+        TILE_2,
+        TILE_3,
+        TILE_4,
+        TILE_5,
+        TILE_6,
+        TILE_7,
+        TILE_8,
         VOID,
-        LIT_VOID,
         NUM_TYPES
     };
-    Tile(int x, int y);
+    Tile(int x, int y,Type type);
     Type type;
     void draw();
     void update();

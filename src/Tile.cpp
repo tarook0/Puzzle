@@ -1,6 +1,6 @@
 #include <Tile.h>
 #include<Grid.h>
-Tile::Tile(int x, int y) : x(x), y(y)
+Tile::Tile(int x, int y,Type type) : x(x), y(y),type(type)
 {
     update();
 }
@@ -12,5 +12,4 @@ void Tile::draw(){
     assert(glGetError() == 0);
 }
 void Tile::update(){
-    char buffer[128];
 }
