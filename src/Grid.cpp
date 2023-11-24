@@ -1,9 +1,7 @@
 #include <Grid.h>
-#include <SWI-cpp.h>
 #include <SFML/Graphics/Image.hpp>
 #include<fstream>
 using namespace std;
-using namespace gl;
 using namespace sf;
 Grid::Grid() {}
 Grid &Grid::instance()
@@ -14,10 +12,8 @@ Grid &Grid::instance()
 void Grid::init()
 {
     glEnable(GL_PROGRAM_POINT_SIZE);
-    PlTerm sizeX, sizeY;
-    PlCall("size", PlTermv(sizeX, sizeY));
-    horizontalTilesCount = sizeX;
-    verticalTilesCount = sizeY;
+    horizontalTilesCount = 3;
+    verticalTilesCount = 3;
     if (horizontalTilesCount > verticalTilesCount)
     {
         tileSideSize = 2.0f / (float)horizontalTilesCount;
@@ -74,7 +70,6 @@ void Grid::draw(){
     }
 }
 void Grid::solve(){
-    PlCall("solve");
     for(Tile &tile:tiles){
         tile.update();
     }

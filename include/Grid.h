@@ -1,7 +1,7 @@
 #pragma once
 #include<vector>
 #include<Tile.h>
-#include<glbinding/gl33/gl.h>
+#include<GL/glew.h>
 #define WINDOW_SIDE 650
 #define GRID Grid::instance()
 enum Uniforms
@@ -17,9 +17,9 @@ class Grid
 private:
     Grid();
     std::vector<char> readBinFile(const char *path);
-    gl::GLuint loadShaderProgram(const char *vertexShaderPath, const char *fragmentShaderPath);
+    GLuint loadShaderProgram(const char *vertexShaderPath, const char *fragmentShaderPath);
     std::vector<Tile> tiles;
-    gl::GLuint shaderProgram;
+    GLuint shaderProgram;
     float tileSideSize;
     int horizontalTilesCount, verticalTilesCount;
 
@@ -28,6 +28,6 @@ public:
     void init();
     void solve();
     void draw();
-    gl::GLuint textures[Tile::NUM_TYPES];
-    gl::GLint uniformsLocations[Uniforms::UNIFORM_NUM];
+    GLuint textures[Tile::NUM_TYPES];
+    GLint uniformsLocations[Uniforms::UNIFORM_NUM];
 };
