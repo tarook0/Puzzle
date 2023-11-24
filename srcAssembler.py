@@ -1,12 +1,8 @@
-#!/bin/python3
+#!/usr/bin/env python3
+from glob import glob
 
-import os
-from posix import listdir
-from posixpath import join
-cwd = os.getcwd()
-cwd = cwd+'/src'
-cpp_files = [f for f in listdir(cwd) if os.path.isfile(
-    join(cwd, f)) and os.path.splitext(f)[1] == '.cpp']
-for f in cpp_files:
-    print('./src/'+f)
+for file in glob('src/**/*.c', recursive=True):
+    print(file)
 
+for file in glob('src/**/*.cpp', recursive=True):
+    print(file)
