@@ -11,6 +11,7 @@ Grid &Grid::instance()
 }
 void Grid::init()
 {
+    glClearColor(0,0,0,1);
     glEnable(GL_PROGRAM_POINT_SIZE);
     horizontalTilesCount = 3;
     verticalTilesCount = 3;
