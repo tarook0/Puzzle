@@ -13,6 +13,7 @@ void Grid::init()
 {
     glClearColor(0,0,0,1);
     glEnable(GL_PROGRAM_POINT_SIZE);
+    glActiveTexture(GL_TEXTURE0);
     horizontalTilesCount = 3;
     verticalTilesCount = 3;
     if (horizontalTilesCount > verticalTilesCount)
