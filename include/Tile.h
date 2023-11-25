@@ -1,9 +1,10 @@
 #pragma once
 #include<assert.h>
+#include<GL/glew.h>
 class Tile{
     int x, y;
     int wallVal;
-
+    static GLuint VAO;
 public:
     enum Type
     {
@@ -22,4 +23,5 @@ public:
     Type type;
     void draw();
     void update();
+    static void init();
 };
