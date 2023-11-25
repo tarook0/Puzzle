@@ -11,6 +11,7 @@ Grid &Grid::instance() {
 void Grid::init() {
   glClearColor(0, 0, 0, 1);
   glEnable(GL_PROGRAM_POINT_SIZE);
+  glDisable(GL_CULL_FACE);
   glActiveTexture(GL_TEXTURE0);
   horizontalTilesCount = 3;
   verticalTilesCount = 3;
@@ -62,6 +63,7 @@ void Grid::init() {
   glUniform1f(uniformsLocations[Uniforms::SIZE_FACTOR],
               (float)WINDOW_SIDE * 0.48828125f);
   glUniform1f(uniformsLocations[Uniforms::POINT_SIZE], tileSideSize);
+  Tile::init();
   assert(glGetError() == 0);
 }
 void Grid::draw() {
