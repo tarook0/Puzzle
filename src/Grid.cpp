@@ -39,6 +39,15 @@ void Grid::init() {
   images[Tile::TILE_8].loadFromFile("./Assets/tile_8.png");
   images[Tile::VOID].loadFromFile("./Assets/void.png");
   images[Tile::TILE_1].flipVertically();
+  images[Tile::TILE_2].flipVertically();
+  images[Tile::TILE_3].flipVertically();  
+  images[Tile::TILE_4].flipVertically();  
+  images[Tile::TILE_5].flipVertically();  
+  images[Tile::TILE_6].flipVertically();  
+  images[Tile::TILE_7].flipVertically();  
+  images[Tile::TILE_8].flipVertically();  
+  images[Tile::VOID].flipVertically();  
+
   //TODO FLIP THE REST
   for (int i = 0; i < Tile::NUM_TYPES; ++i) {
     glGenTextures(1, &textures[i]);
