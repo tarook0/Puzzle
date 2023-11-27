@@ -6,8 +6,10 @@ uniform float size;
 uniform float sizeFactor;
 void main(){
   pos_model_out=pos_model;
-  //gl_Position=vec4(pos_model.x*size-size/2.0-1,pos_model.y*size-size/2.0-1,0.0,1.0);
   mat4 scale=mat4(0.333);
   scale[3][3]=1;
-  gl_Position=scale*vec4(pos_model,0,1);
+  mat4 translate=mat4(1.0);
+  translate[3][0]=(-2+x)*0.666;
+  translate[3][1]=(-2+y)*0.666;
+  gl_Position=translate*scale*vec4(pos_model,0,1);
 }
