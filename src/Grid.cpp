@@ -88,59 +88,64 @@ void Grid::draw() {
   }
   assert(glGetError() == 0);
 }
-void Grid:: selectedTileInit(){
-  for (Tile tile : tiles) {
-    if (tile.type==Tile::VOID)
+void Grid:: selectedTilecordinateInit(){
+  for (int i=0;i<tiles.size();i++) {
+    if (tiles[i].type==Tile::VOID)
     {
-      selectedTile=tile;
+      cordinate.x=tiles[i].x;
+      cordinate.y=tiles[i].y;
     }
   }
 }
 
 void Grid::solve( Destination des) {
     //up
-  if ((des==Destination::up)&&selectedTile.y!=1) {
-    for (int i=0;i<tiles.size();++i)
+  if ((des==Destination::up)&&cordinate.y!=1) {
+    for (int i=0;i<tiles.size();i++)
     {
       if(tiles[i].type==Tile::VOID){
         tiles[i].type=tiles[i-1].type;
         tiles[i-1].type=Tile::VOID;
-        selectedTile=tiles[i-1];
+        cordinate.x=tiles[i-1].x;
+        cordinate.y=tiles[i-1].y;
       }
     
     }
   }
 //down
-  if ((des==Destination::down)&&selectedTile.y!=3) {
+  if ((des==Destination::down)&&cordinate.y!=3) {
     for (int i=0;i<tiles.size();i++)
     {
       if(tiles[i].type==Tile::VOID){
         tiles[i].type=tiles[i+1].type;
         tiles[i+1].type=Tile::VOID;
-        selectedTile=tiles[i+1];
+        cordinate.x=tiles[i+1].x;
+        cordinate.y=tiles[i+1].y;
       }
     
     }
   }
 //left
-  if ((des==Destination::left)&&selectedTile.x!=1) {
-    for (int i=0;i<tiles.size();++i)
+  if ((des==Destination::left)&&cordinate.x!=1) {
+    for (int i=0;i<tiles.size();i++)
     {
       if(tiles[i].type==Tile::VOID){
         tiles[i].type=tiles[i-3].type;
         tiles[i-3].type=Tile::VOID;
-        selectedTile=tiles[i-3];
+        cordinate.x=tiles[i-3].x;
+        cordinate.y=tiles[i-3].y;
       }
     }
   }
   //right
-  if ((des==Destination::right)&&selectedTile.x!=3) {
-    for (int i=0;i<tiles.size();++i)
+  if ((des==Destination::right)&&cordinate.x!=3) {
+    for (int i=0;i<tiles.size();i++)
     {
       if(tiles[i].type==Tile::VOID){
         tiles[i].type=tiles[i+3].type;
         tiles[i+3].type=Tile::VOID;
-        selectedTile=tiles[i+3];
+        cordinate.x=tiles[i+3].x;
+        cordinate.y=tiles[i+3].y;
       }  
     }
   }

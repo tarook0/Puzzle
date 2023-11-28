@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     glewExperimental=true;
     glewInit();
     GRID.init();
-    GRID.selectedTileInit();
+    GRID.selectedTilecordinateInit();
     GRID.draw();
     window.display();
     bool solved = false;

@@ -31,12 +31,16 @@ public:
         left,
         right,
     };
+    struct {
+  int x;
+  int y;
+} cordinate;
     void init();
-    void selectedTileInit();
+    void selectedTilecordinateInit();
     void solve( Destination des);
     void draw();
     
-Tile selectedTile = Tile(0, 0, Tile::NUM_TYPES);
+// Tile selectedTile = Tile(0, 0, Tile::NUM_TYPES);
 GLuint textures[Tile::NUM_TYPES];
 GLint uniformsLocations[Uniforms::UNIFORM_NUM];
 };
