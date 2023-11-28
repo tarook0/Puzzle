@@ -31,7 +31,7 @@ public:
   } cordinate;
   void init();
   void selectedTilecordinateInit();
-  void solve(Destination des);
+  void player(Destination des);
   void draw();
 
   // Tile selectedTile = Tile(0, 0, Tile::NUM_TYPES);

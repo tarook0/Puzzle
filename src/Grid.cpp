@@ -97,7 +97,7 @@ void Grid::selectedTilecordinateInit() {
   }
 }
 
-void Grid::solve(Destination des) {
+void Grid::player(Destination des) {
   // up
   if ((des == Destination::up) && cordinate.y != 3) {
     tiles[cordinate.i].type=tiles[cordinate.i+1].type;

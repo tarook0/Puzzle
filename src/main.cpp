@@ -10,7 +10,7 @@ int main(int argc, char **argv)
     ctxSettings.minorVersion = 0;
     ctxSettings.sRgbCapable = false;
     ctxSettings.stencilBits = 0;
-    Window window(VideoMode(WINDOW_SIDE, WINDOW_SIDE), "Akari", 7U, ctxSettings);
+    Window window(VideoMode(WINDOW_SIDE, WINDOW_SIDE), "Puzzle", 7U, ctxSettings);
     glewExperimental=true;
     glewInit();
     GRID.init();
@@ -31,20 +31,20 @@ int main(int argc, char **argv)
             case Event::KeyPressed:
                 if (event.key.code == Keyboard::W)
                 {
-                    GRID.solve(Grid::Destination::up);
+                    GRID.player(Grid::Destination::up);
                     
                 }
                 if (event.key.code == Keyboard::S)
                 {
-                    GRID.solve(Grid::Destination::down);
+                    GRID.player(Grid::Destination::down);
                 }
                 if (event.key.code == Keyboard::D)
                 {
-                    GRID.solve(Grid::Destination::right);
+                    GRID.player(Grid::Destination::right);
                 }
                 if (event.key.code == Keyboard::A)
                 {
-                    GRID.solve(Grid::Destination::left);
+                    GRID.player(Grid::Destination::left);
                 }
             default:
                 break;
