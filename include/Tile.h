@@ -1,11 +1,12 @@
 #pragma once
 #include<assert.h>
 #include<GL/glew.h>
+#include<glm/glm.hpp>
 class Tile{
-    int x, y;
     int wallVal;
     static GLuint VAO;
 public:
+int x, y;
     enum Type
     {
         TILE_1,

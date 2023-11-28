@@ -25,9 +25,18 @@ private:
 
 public:
     static Grid &instance();
+    enum Destination{
+        up,
+        down,
+        left,
+        right,
+    };
     void init();
-    void solve();
+    void selectedTileInit();
+    void solve( Destination des);
     void draw();
-    GLuint textures[Tile::NUM_TYPES];
-    GLint uniformsLocations[Uniforms::UNIFORM_NUM];
+    
+Tile selectedTile = Tile(0, 0, Tile::NUM_TYPES);
+GLuint textures[Tile::NUM_TYPES];
+GLint uniformsLocations[Uniforms::UNIFORM_NUM];
 };

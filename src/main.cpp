@@ -14,6 +14,7 @@ int main(int argc, char **argv)
     glewExperimental=true;
     glewInit();
     GRID.init();
+    GRID.selectedTileInit();
     GRID.draw();
     window.display();
     bool solved = false;
@@ -28,9 +29,22 @@ int main(int argc, char **argv)
                 return 0;
                 break;
             case Event::KeyPressed:
-                if (event.key.code == Keyboard::Space && !solved)
+                if (event.key.code == Keyboard::W)
                 {
-                    GRID.solve();
+                    GRID.solve(Grid::Destination::up);
+                    
+                }
+                if (event.key.code == Keyboard::S)
+                {
+                    GRID.solve(Grid::Destination::down);
+                }
+                if (event.key.code == Keyboard::D)
+                {
+                    GRID.solve(Grid::Destination::right);
+                }
+                if (event.key.code == Keyboard::A)
+                {
+                    GRID.solve(Grid::Destination::left);
                 }
             default:
                 break;

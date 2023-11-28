@@ -1,8 +1,11 @@
 #include <Grid.h>
 #include <SFML/Graphics/Image.hpp>
 #include <fstream>
+#include <SFML/Window/Keyboard.hpp>
+
 using namespace std;
 using namespace sf;
+using namespace glm;
 Grid::Grid() {}
 Grid &Grid::instance() {
   static Grid grid;
@@ -15,6 +18,7 @@ void Grid::init() {
   glActiveTexture(GL_TEXTURE0);
   horizontalTilesCount = 3;
   verticalTilesCount = 3;
+
   if (horizontalTilesCount > verticalTilesCount) {
     tileSideSize = 2.0f / (float)horizontalTilesCount;
   } else {
@@ -84,11 +88,64 @@ void Grid::draw() {
   }
   assert(glGetError() == 0);
 }
-void Grid::solve() {
-  for (Tile &tile : tiles) {
-    tile.update();
+void Grid:: selectedTileInit(){
+  for (Tile tile : tiles) {
+    if (tile.type==Tile::VOID)
+    {
+      selectedTile=tile;
+    }
   }
 }
+
+void Grid::solve( Destination des) {
+    //up
+  if ((des==Destination::up)&&selectedTile.y!=1) {
+    for (int i=0;i<tiles.size();++i)
+    {
+      if(tiles[i].type==Tile::VOID){
+        tiles[i].type=tiles[i-1].type;
+        tiles[i-1].type=Tile::VOID;
+        selectedTile=tiles[i-1];
+      }
+    
+    }
+  }
+//down
+  if ((des==Destination::down)&&selectedTile.y!=3) {
+    for (int i=0;i<tiles.size();i++)
+    {
+      if(tiles[i].type==Tile::VOID){
+        tiles[i].type=tiles[i+1].type;
+        tiles[i+1].type=Tile::VOID;
+        selectedTile=tiles[i+1];
+      }
+    
+    }
+  }
+//left
+  if ((des==Destination::left)&&selectedTile.x!=1) {
+    for (int i=0;i<tiles.size();++i)
+    {
+      if(tiles[i].type==Tile::VOID){
+        tiles[i].type=tiles[i-3].type;
+        tiles[i-3].type=Tile::VOID;
+        selectedTile=tiles[i-3];
+      }
+    }
+  }
+  //right
+  if ((des==Destination::right)&&selectedTile.x!=3) {
+    for (int i=0;i<tiles.size();++i)
+    {
+      if(tiles[i].type==Tile::VOID){
+        tiles[i].type=tiles[i+3].type;
+        tiles[i+3].type=Tile::VOID;
+        selectedTile=tiles[i+3];
+      }  
+    }
+  }
+}
+
 GLuint Grid::loadShaderProgram(const char *vertexShaderPath,
                                const char *fragmentShaderPath) {
   GLuint program;
