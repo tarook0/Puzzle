@@ -1,7 +1,7 @@
 #include <Grid.h>
 #include <SFML/Graphics/Image.hpp>
-#include <fstream>
 #include <SFML/Window/Keyboard.hpp>
+#include <fstream>
 
 using namespace std;
 using namespace sf;
@@ -44,15 +44,14 @@ void Grid::init() {
   images[Tile::VOID].loadFromFile("./Assets/void.png");
   images[Tile::TILE_1].flipVertically();
   images[Tile::TILE_2].flipVertically();
-  images[Tile::TILE_3].flipVertically();  
-  images[Tile::TILE_4].flipVertically();  
-  images[Tile::TILE_5].flipVertically();  
-  images[Tile::TILE_6].flipVertically();  
-  images[Tile::TILE_7].flipVertically();  
-  images[Tile::TILE_8].flipVertically();  
-  images[Tile::VOID].flipVertically();  
+  images[Tile::TILE_3].flipVertically();
+  images[Tile::TILE_4].flipVertically();
+  images[Tile::TILE_5].flipVertically();
+  images[Tile::TILE_6].flipVertically();
+  images[Tile::TILE_7].flipVertically();
+  images[Tile::TILE_8].flipVertically();
+  images[Tile::VOID].flipVertically();
 
-  //TODO FLIP THE REST
   for (int i = 0; i < Tile::NUM_TYPES; ++i) {
     glGenTextures(1, &textures[i]);
     glBindTexture(GL_TEXTURE_2D, textures[i]);
@@ -88,66 +87,44 @@ void Grid::draw() {
   }
   assert(glGetError() == 0);
 }
-void Grid:: selectedTilecordinateInit(){
-  for (int i=0;i<tiles.size();i++) {
-    if (tiles[i].type==Tile::VOID)
-    {
-      cordinate.x=tiles[i].x;
-      cordinate.y=tiles[i].y;
+void Grid::selectedTilecordinateInit() {
+  for (int i = 0; i < tiles.size(); i++) {
+    if (tiles[i].type == Tile::VOID) {
+      cordinate.x = tiles[i].x;
+      cordinate.y = tiles[i].y;
+      cordinate.i=i;
     }
   }
 }
 
-void Grid::solve( Destination des) {
-    //up
-  if ((des==Destination::up)&&cordinate.y!=1) {
-    for (int i=0;i<tiles.size();i++)
-    {
-      if(tiles[i].type==Tile::VOID){
-        tiles[i].type=tiles[i-1].type;
-        tiles[i-1].type=Tile::VOID;
-        cordinate.x=tiles[i-1].x;
-        cordinate.y=tiles[i-1].y;
-      }
-    
-    }
+void Grid::solve(Destination des) {
+  // up
+  if ((des == Destination::up) && cordinate.y != 3) {
+    tiles[cordinate.i].type=tiles[cordinate.i+1].type;
+    tiles[cordinate.i+1].type=Tile::VOID;
+    cordinate.i++;
+    cordinate.y++;
   }
-//down
-  if ((des==Destination::down)&&cordinate.y!=3) {
-    for (int i=0;i<tiles.size();i++)
-    {
-      if(tiles[i].type==Tile::VOID){
-        tiles[i].type=tiles[i+1].type;
-        tiles[i+1].type=Tile::VOID;
-        cordinate.x=tiles[i+1].x;
-        cordinate.y=tiles[i+1].y;
-      }
-    
-    }
+  // down
+  if ((des == Destination::down) && cordinate.y != 1) {
+    tiles[cordinate.i].type=tiles[cordinate.i-1].type;
+    tiles[cordinate.i-1].type=Tile::VOID;
+    cordinate.i--;
+    cordinate.y--;
   }
-//left
-  if ((des==Destination::left)&&cordinate.x!=1) {
-    for (int i=0;i<tiles.size();i++)
-    {
-      if(tiles[i].type==Tile::VOID){
-        tiles[i].type=tiles[i-3].type;
-        tiles[i-3].type=Tile::VOID;
-        cordinate.x=tiles[i-3].x;
-        cordinate.y=tiles[i-3].y;
-      }
-    }
+  // left
+  if ((des == Destination::left) && cordinate.x != 1) {
+    tiles[cordinate.i].type=tiles[cordinate.i-3].type;
+    tiles[cordinate.i-3].type=Tile::VOID;
+    cordinate.i-=3;
+    cordinate.x--;
   }
-  //right
-  if ((des==Destination::right)&&cordinate.x!=3) {
-    for (int i=0;i<tiles.size();i++)
-    {
-      if(tiles[i].type==Tile::VOID){
-        tiles[i].type=tiles[i+3].type;
-        tiles[i+3].type=Tile::VOID;
-        cordinate.x=tiles[i+3].x;
-        cordinate.y=tiles[i+3].y;
-      }  
-    }
+  // right
+  if ((des == Destination::right) && cordinate.x != 3) {
+    tiles[cordinate.i].type=tiles[cordinate.i+3].type;
+    tiles[cordinate.i+3].type=Tile::VOID;
+    cordinate.i+=3;
+    cordinate.x++;
   }
 }
 
