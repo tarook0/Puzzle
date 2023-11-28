@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     ctxSettings.sRgbCapable = false;
     ctxSettings.stencilBits = 0;
     Window window(VideoMode(WINDOW_SIDE, WINDOW_SIDE), "Puzzle", 7U, ctxSettings);
-    glewExperimental=true;
+    glewExperimental = true;
     glewInit();
     GRID.init();
     GRID.selectedTilecordinateInit();
@@ -28,11 +28,14 @@ int main(int argc, char **argv)
             case Event::Closed:
                 return 0;
                 break;
-            case Event::KeyPressed:
+            case Event::EventType::KeyPressed:
+                if (event.key.code == Keyboard::Escape)
+                {
+                    return false;
+                }
                 if (event.key.code == Keyboard::W)
                 {
                     GRID.player(Grid::Destination::up);
-                    
                 }
                 if (event.key.code == Keyboard::S)
                 {
