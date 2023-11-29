@@ -1,8 +1,19 @@
 #include <SFML/Window.hpp>
 #include <Grid.h>
+#include <vector>
+#include <string>
+#include <iostream>
 using namespace sf;
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
+    for ( int i = 1 ; i < argc ; i++){
+        std::string tmp (argv[i]);
+        GRID.InputArrinit(tmp) ;
+    }
+    if(argc!=10){
+        return 0;
+    }
+    else{
     ContextSettings ctxSettings{};
     ctxSettings.antialiasingLevel = 0;
     ctxSettings.depthBits = 0;
@@ -13,8 +24,9 @@ int main(int argc, char **argv)
     Window window(VideoMode(WINDOW_SIDE, WINDOW_SIDE), "Puzzle", 7U, ctxSettings);
     glewExperimental = true;
     glewInit();
+    
     GRID.init();
-    GRID.selectedTilecordinateInit();
+    GRID.selectedTileCordinateInit();
     GRID.draw();
     window.display();
     bool solved = false;
@@ -55,5 +67,6 @@ int main(int argc, char **argv)
         }
         GRID.draw();
         window.display();
+    }
     }
 }

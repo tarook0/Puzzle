@@ -9,6 +9,7 @@ public:
 int x, y;
     enum Type
     {
+        blabla,
         TILE_1,
         TILE_2,
         TILE_3,

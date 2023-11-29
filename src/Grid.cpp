@@ -2,6 +2,7 @@
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <fstream>
+#include<math.h>
 
 using namespace std;
 using namespace sf;
@@ -11,25 +12,45 @@ Grid &Grid::instance() {
   static Grid grid;
   return grid;
 }
+void Grid::InputArrinit(std::string element){
+  inputArr.push_back(element);
+}
 void Grid::init() {
   glClearColor(0, 0, 0, 1);
   glEnable(GL_PROGRAM_POINT_SIZE);
   glDisable(GL_CULL_FACE);
   glActiveTexture(GL_TEXTURE0);
-  horizontalTilesCount = 3;
-  verticalTilesCount = 3;
+// if (inputArr.empty())
+// {  horizontalTilesCount = 3;
+//   verticalTilesCount = 3;
 
-  if (horizontalTilesCount > verticalTilesCount) {
+//   if (horizontalTilesCount > verticalTilesCount) {
+//     tileSideSize = 2.0f / (float)horizontalTilesCount;
+//   } else {
+//     tileSideSize = 2.0f / (float)verticalTilesCount;
+//   }
+//   for (int i = 0; i < horizontalTilesCount; ++i) {
+//     for (int j = 0; j < verticalTilesCount; ++j) {
+//       tiles.push_back(
+//           Tile(i + 1, j + 1, (Tile::Type)(i * verticalTilesCount + j)));
+//     }
+//   }
+//   }
+  
+    horizontalTilesCount=3;
+    verticalTilesCount=3;
+      if (horizontalTilesCount > verticalTilesCount) {
     tileSideSize = 2.0f / (float)horizontalTilesCount;
   } else {
     tileSideSize = 2.0f / (float)verticalTilesCount;
   }
-  for (int i = 0; i < horizontalTilesCount; ++i) {
+   for (int i = 0; i < horizontalTilesCount; ++i) {
     for (int j = 0; j < verticalTilesCount; ++j) {
       tiles.push_back(
-          Tile(i + 1, j + 1, (Tile::Type)(i * verticalTilesCount + j)));
+          Tile(i + 1, j + 1, (Tile::Type)(stoi(inputArr[i * verticalTilesCount + j]))));// / 0 1 2 3 4 5 6 7 8  
     }
   }
+  
 
   // Load textures
   Image images[Tile::NUM_TYPES];
@@ -80,6 +101,7 @@ void Grid::init() {
   Tile::init();
   assert(glGetError() == 0);
 }
+
 void Grid::draw() {
   glClear(GL_COLOR_BUFFER_BIT);
   for (Tile tile : tiles) {
@@ -87,7 +109,7 @@ void Grid::draw() {
   }
   assert(glGetError() == 0);
 }
-void Grid::selectedTilecordinateInit() {
+void Grid::selectedTileCordinateInit() {
   for (int i = 0; i < tiles.size(); i++) {
     if (tiles[i].type == Tile::VOID) {
       cordinate.x = tiles[i].x;
