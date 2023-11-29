@@ -47,7 +47,7 @@ void Grid::init() {
    for (int i= 0 ; i <horizontalTilesCount; ++i) {
     for (int j = 0; j < verticalTilesCount; ++j) {
       tiles.push_back(
-          Tile(j + 1,i + 1,  (Tile::Type)(stoi(inputArr[i * verticalTilesCount + j]))));// / 0 1 2 3 4 5 6 7 8  
+          Tile(i + 1,j + 1,  (Tile::Type)(stoi(inputArr[i * verticalTilesCount + j]))));// / 0 1 2 3 4 5 6 7 8  
     }
   }
   
@@ -121,28 +121,28 @@ void Grid::selectedTileCordinateInit() {
 
 void Grid::player(Destination des) {
   // up
-  if ((des == Destination::right) && cordinate.y != 3) {
+  if ((des == Destination::up) && cordinate.y != 3) {
     tiles[cordinate.i].type=tiles[cordinate.i+1].type;
     tiles[cordinate.i+1].type=Tile::VOID;
     cordinate.i++;
     cordinate.y++;
   }
   // down
-  if ((des == Destination::left) && cordinate.y != 1) {
+  if ((des == Destination::down) && cordinate.y != 1) {
     tiles[cordinate.i].type=tiles[cordinate.i-1].type;
     tiles[cordinate.i-1].type=Tile::VOID;
     cordinate.i--;
     cordinate.y--;
   }
   // left
-  if ((des == Destination::down) && cordinate.x != 1) {
+  if ((des == Destination::left) && cordinate.x != 1) {
     tiles[cordinate.i].type=tiles[cordinate.i-3].type;
     tiles[cordinate.i-3].type=Tile::VOID;
     cordinate.i-=3;
     cordinate.x--;
   }
   // right
-  if ((des == Destination::up) && cordinate.x != 3) {
+  if ((des == Destination::right) && cordinate.x != 3) {
     tiles[cordinate.i].type=tiles[cordinate.i+3].type;
     tiles[cordinate.i+3].type=Tile::VOID;
     cordinate.i+=3;
