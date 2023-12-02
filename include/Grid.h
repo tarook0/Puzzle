@@ -32,11 +32,14 @@ public:
     int i;
   } cordinate;
   void init();
+
   void InputArrinit(std::string element);
   void selectedTileCordinateInit();
   void player(Destination des);
   void draw();
-  
+  void winCheck();
+  void initvectorSol();
+  std::vector<Tile> solution;
   GLuint textures[Tile::NUM_TYPES];
   GLint uniformsLocations[Uniforms::UNIFORM_NUM];
 };

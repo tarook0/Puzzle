@@ -23,7 +23,6 @@ void Grid::init() {
 // if (inputArr.empty())
 // {  horizontalTilesCount = 3;
 //   verticalTilesCount = 3;
-
 //   if (horizontalTilesCount > verticalTilesCount) {
 //     tileSideSize = 2.0f / (float)horizontalTilesCount;
 //   } else {
@@ -36,7 +35,7 @@ void Grid::init() {
 //     }
 //   }
 //   }
-  
+  tiles.clear();
     horizontalTilesCount=3;
     verticalTilesCount=3;
       if (horizontalTilesCount > verticalTilesCount) {
@@ -47,7 +46,7 @@ void Grid::init() {
    for (int i= 0 ; i <horizontalTilesCount; ++i) {
     for (int j = 0; j < verticalTilesCount; ++j) {
       tiles.push_back(
-          Tile(i + 1,j + 1,  (Tile::Type)(stoi(inputArr[i * verticalTilesCount + j]))));// / 0 1 2 3 4 5 6 7 8  
+          Tile(i + 1,j + 1,  (Tile::Type)(stoi(inputArr[i * verticalTilesCount + j]))));// / 0 1 2 3 4 5 6 7 8 
     }
   }
   
@@ -63,6 +62,8 @@ void Grid::init() {
   images[Tile::TILE_7].loadFromFile("./Assets/tile_7.png");
   images[Tile::TILE_8].loadFromFile("./Assets/tile_8.png");
   images[Tile::VOID].loadFromFile("./Assets/void.png");
+  images[Tile::TILE_9].loadFromFile("./Assets/tile_9.png");
+  images[Tile::WIN].loadFromFile("./Assets/win_1.png");
   images[Tile::TILE_1].flipVertically();
   images[Tile::TILE_2].flipVertically();
   images[Tile::TILE_3].flipVertically();
@@ -72,6 +73,8 @@ void Grid::init() {
   images[Tile::TILE_7].flipVertically();
   images[Tile::TILE_8].flipVertically();
   images[Tile::VOID].flipVertically();
+  images[Tile::TILE_9].flipVertically();
+  images[Tile::WIN].flipVertically();
 
   for (int i = 0; i < Tile::NUM_TYPES; ++i) {
     glGenTextures(1, &textures[i]);
@@ -150,6 +153,45 @@ void Grid::player(Destination des) {
   }
 }
 
+
+void Grid:: initvectorSol(){
+  solution.push_back(Tile(1,1,Tile::TILE_1));
+  solution.push_back(Tile(2,1,Tile::TILE_2));
+  solution.push_back(Tile(3,1,Tile::TILE_3));
+  solution.push_back(Tile(1,2,Tile::TILE_4));
+  solution.push_back(Tile(2,2,Tile::TILE_5));
+  solution.push_back(Tile(3,2,Tile::TILE_6));
+  solution.push_back(Tile(1,3,Tile::TILE_7));
+  solution.push_back(Tile(2,3,Tile::TILE_8));
+  solution.push_back(Tile(3,3,Tile::VOID));
+}
+
+
+void Grid::winCheck(){
+   bool solved=false;
+    for(int i=0;i<tiles.size();i++){
+      if(tiles[i].type==solution[i].type){
+        solved=true;
+        }
+        else
+        {
+          solved=false;
+          break;
+        }
+    }
+  if (solved)
+  {
+     for(int i=0;i<tiles.size();i++){
+    if (tiles[i].type==Tile::VOID){
+      tiles[i].type=Tile::TILE_9;
+     }
+     else{
+     tiles[i].type=Tile::WIN;
+     }
+    }
+  }
+  
+}
 GLuint Grid::loadShaderProgram(const char *vertexShaderPath,
                                const char *fragmentShaderPath) {
   GLuint program;

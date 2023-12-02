@@ -9,7 +9,7 @@ public:
 int x, y;
     enum Type
     {
-        blabla,
+        TILE_9,
         TILE_1,
         TILE_2,
         TILE_3,
@@ -19,6 +19,7 @@ int x, y;
         TILE_7,
         TILE_8,
         VOID,
+        WIN,
         NUM_TYPES
     };
     Tile(int x, int y,Type type);

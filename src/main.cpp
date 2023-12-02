@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     GRID.init();
     GRID.selectedTileCordinateInit();
     GRID.draw();
+    GRID.initvectorSol();
     window.display();
     bool solved = false;
     while (1)
@@ -47,24 +48,36 @@ int main(int argc, char *argv[])
                 }
                 if (event.key.code == Keyboard::W)
                 {
+                   GRID.winCheck();
                     GRID.player(Grid::Destination::up);
                 }
                 if (event.key.code == Keyboard::S)
                 {
+                    GRID.winCheck();
                     GRID.player(Grid::Destination::down);
                 }
                 if (event.key.code == Keyboard::D)
                 {
+                    GRID.winCheck();
                     GRID.player(Grid::Destination::right);
                 }
                 if (event.key.code == Keyboard::A)
                 {
+                    GRID.winCheck();
                     GRID.player(Grid::Destination::left);
+                }
+                 if (event.key.code == Keyboard::R)
+                {
+                    GRID.
+                     GRID.init();
+                     GRID.selectedTileCordinateInit();
+                   
                 }
             default:
                 break;
             }
         }
+        GRID.winCheck();
         GRID.draw();
         window.display();
     }
