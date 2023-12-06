@@ -2,8 +2,6 @@
 layout(location=0) in vec2 pos_model;
 out vec2 pos_model_out;
 uniform int x,y;
-uniform float size;
-uniform float sizeFactor;
 void main(){
   pos_model_out=pos_model;
   mat4 scale=mat4(0.333);

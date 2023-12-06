@@ -17,24 +17,8 @@ void Grid::InputArrinit(std::string element){
 }
 void Grid::init() {
   glClearColor(0, 0, 0, 1);
-  glEnable(GL_PROGRAM_POINT_SIZE);
   glDisable(GL_CULL_FACE);
   glActiveTexture(GL_TEXTURE0);
-// if (inputArr.empty())
-// {  horizontalTilesCount = 3;
-//   verticalTilesCount = 3;
-//   if (horizontalTilesCount > verticalTilesCount) {
-//     tileSideSize = 2.0f / (float)horizontalTilesCount;
-//   } else {
-//     tileSideSize = 2.0f / (float)verticalTilesCount;
-//   }
-//   for (int i = 0; i < horizontalTilesCount; ++i) {
-//     for (int j = 0; j < verticalTilesCount; ++j) {
-//       tiles.push_back(
-//           Tile(i + 1, j + 1, (Tile::Type)(i * verticalTilesCount + j)));
-//     }
-//   }
-//   }
   tiles.clear();
     horizontalTilesCount=3;
     verticalTilesCount=3;
@@ -94,13 +78,6 @@ void Grid::init() {
   glUseProgram(shaderProgram);
   uniformsLocations[Uniforms::X] = glGetUniformLocation(shaderProgram, "x");
   uniformsLocations[Uniforms::Y] = glGetUniformLocation(shaderProgram, "y");
-  uniformsLocations[Uniforms::POINT_SIZE] =
-      glGetUniformLocation(shaderProgram, "size");
-  uniformsLocations[Uniforms::SIZE_FACTOR] =
-      glGetUniformLocation(shaderProgram, "sizeFactor");
-  glUniform1f(uniformsLocations[Uniforms::SIZE_FACTOR],
-              (float)WINDOW_SIDE * 0.48828125f);
-  glUniform1f(uniformsLocations[Uniforms::POINT_SIZE], tileSideSize);
   Tile::init();
   assert(glGetError() == 0);
 }

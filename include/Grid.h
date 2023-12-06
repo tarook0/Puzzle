@@ -5,7 +5,7 @@
 #include <string>
 #define WINDOW_SIDE 650
 #define GRID Grid::instance()
-enum Uniforms { X, Y, POINT_SIZE, SIZE_FACTOR, UNIFORM_NUM };
+enum Uniforms { X, Y, UNIFORM_NUM };
 class Grid {
 private:
   Grid();
