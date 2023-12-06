@@ -101,28 +101,28 @@ void Grid::selectedTileCordinateInit() {
 
 void Grid::player(Destination des) {
   // up
-  if ((des == Destination::up) && cordinate.y != 3) {
+  if ((des == Destination::right) && cordinate.y != 3) {
     tiles[cordinate.i].type=tiles[cordinate.i+1].type;
     tiles[cordinate.i+1].type=Tile::VOID;
     cordinate.i++;
     cordinate.y++;
   }
   // down
-  if ((des == Destination::down) && cordinate.y != 1) {
+  if ((des == Destination::left) && cordinate.y != 1) {
     tiles[cordinate.i].type=tiles[cordinate.i-1].type;
     tiles[cordinate.i-1].type=Tile::VOID;
     cordinate.i--;
     cordinate.y--;
   }
   // left
-  if ((des == Destination::left) && cordinate.x != 1) {
+  if ((des == Destination::up) && cordinate.x != 1) {
     tiles[cordinate.i].type=tiles[cordinate.i-3].type;
     tiles[cordinate.i-3].type=Tile::VOID;
     cordinate.i-=3;
     cordinate.x--;
   }
   // right
-  if ((des == Destination::right) && cordinate.x != 3) {
+  if ((des == Destination::down) && cordinate.x != 3) {
     tiles[cordinate.i].type=tiles[cordinate.i+3].type;
     tiles[cordinate.i+3].type=Tile::VOID;
     cordinate.i+=3;
