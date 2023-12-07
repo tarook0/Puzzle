@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <Tile.h>
+#include<set>
 #include <vector>
 #include <string>
 #define WINDOW_SIDE 650
@@ -39,6 +40,7 @@ public:
   void draw();
   void winCheck();
   void initvectorSol();
+  bool containsDuplicate();
   std::vector<Tile> solution;
   GLuint textures[Tile::NUM_TYPES];
   GLint uniformsLocations[Uniforms::UNIFORM_NUM];

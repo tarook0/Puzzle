@@ -12,6 +12,23 @@ Grid &Grid::instance() {
   static Grid grid;
   return grid;
 }
+#include <vector>
+#include <string>
+#include <unordered_set>
+
+bool Grid:: containsDuplicate() {
+    std::unordered_set<std::string> seen;
+    for (const auto& str : inputArr) {
+        if (seen.find(str) != seen.end()) {
+            // This string has already been seen.
+            return true;
+        }
+        seen.insert(str);
+    }
+    // No repeated string found.
+    return false;
+}
+
 void Grid::InputArrinit(std::string element){
   inputArr.push_back(element);
 }

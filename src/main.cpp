@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <algorithm>
 using namespace sf;
 int main(int argc, char *argv[])
 {
@@ -10,10 +11,8 @@ int main(int argc, char *argv[])
         std::string tmp (argv[i]);
         GRID.InputArrinit(tmp) ;
     }
-    if(argc!=10){
-        return 0;
-    }
-    else{
+    if(argc==10 && !GRID.containsDuplicate())
+    {
     ContextSettings ctxSettings{};
     ctxSettings.antialiasingLevel = 0;
     ctxSettings.depthBits = 0;
@@ -82,4 +81,10 @@ int main(int argc, char *argv[])
         window.display();
     }
     }
+
+    else{
+        return 0;
+    }
+
 }
+
