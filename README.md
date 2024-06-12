@@ -26,7 +26,7 @@ Once you have these dependencies installed, you can follow these steps to build 
 
 - **Mouse**: Use the mouse to interact with the game board and UI elements.
 - **Keyboard**:
-- `WASD` or `Arrow Keys`: Move the camera
+- `WASD` or `Arrow Keys`: Move the Puzzle
 - `Space`: Reset the game board
 - `Escape`: Quit the game
 
